@@ -1,20 +1,20 @@
 <?php
 session_start();
-$name=$_POST['name'];
-$email=$_POST['email'];
-$number=$_POST['phone_no'];
-$password=$_POST['password'];
-
-$conn=new mysqli('localhost', 'root', '', 'jobs');
-if($conn->connect_error){
-    die('Connection Failed :'.$conn->connect_error);
-}else{
-    $stmt=$conn->prepare("INSERT INTO `users`(`Name`, `Email`, `Phone_no` , `Password`) VALUES (?,?,?,?)");
-    $stmt->bind_param("ssis", $name, $email, $number, $password);
-    $execval=$stmt->execute();
-    echo $execval;
-    $stmt->close();
-    $conn->close();
-}
-
-?>
+	$sname = "localhost";
+	$uname = "root";
+	$password="";
+    $Database="jobs";
+	// Database connection
+	$conn = mysqli_connect($sname, $uname, $password, $Database);
+	if(isset($_POST['submit'])){
+    mysqli_select_db($dbname,$conn);
+    $name=$_POST['name'];
+    $email=$_POST['email'];
+    $number=$_POST['phone_no'];
+    $password=$_POST['password'];
+    $query="INSERT INTO users(`Name`,`Email`, `Phone_no`, `Password`) VALUES ('[$name]','[$email]', '[$phone_no]', '[$phone_no]'";
+    $run=mysqli_query($conn, $query);
+    }
+    
+		
+        ?>
